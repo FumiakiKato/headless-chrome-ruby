@@ -1,0 +1,5 @@
+#!/bin/bash
+
+readonly REPOSITORY=hogefuga/headless-chrome-ruby
+
+: readonly ${REGISTRY:=hogefuga}

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(cd $(dirname $0) && pwd)
+source ${SCRIPT_DIR}/configure
+
+: ${WORKSPACE:=${SCRIPT_DIR}/work}
+: ${CONTAINER_WORKSPACE:=/selenium-work/work}
+
+docker run --rm \
+  --privileged \
+  --net="host" \
+  -v ${WORKSPACE}:${CONTAINER_WORKSPACE} \
+  -e WORKSPACE=${CONTAINER_WORKSPACE}
+  ${REGISTRY}/${REPOSITORY} \
+  /bin/bash -c "ruby ${CONTAINER_WORKSPACE}/sample.rb"
